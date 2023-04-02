@@ -1,15 +1,14 @@
 let time = document.getElementById("time");
-let date,hours,minutes,seconds,amPm;
+let date, hours, minutes, seconds, amPm;
 
 function updateTime() {
   date = new Date();
-   seconds = date.getSeconds();
-   hours = date.getHours();
-   minutes = date.getMinutes();
+  seconds = date.getSeconds();
+  hours = date.getHours();
+  minutes = date.getMinutes();
 
-
-   amPm = hours >= 12 ? 'PM' : 'AM'; // check if it's AM or PM
-   hours = hours % 12 || 12; // convert to 12-hour format
+  amPm = hours >= 12 ? "PM" : "AM"; // check if it's AM or PM
+  hours = hours % 12 || 12; // convert to 12-hour format
 
   if (hours < 10) {
     hours = "0" + hours;
@@ -25,26 +24,58 @@ function updateTime() {
 }
 setInterval(updateTime, 1000);
 
-
-
 // alarm
-let hourss = document.getElementById('hourss');
-let minutess = document.getElementById('minutess');
-let secondss = document.getElementById('secondss');
-let amPms = document.getElementById('amPms')
+let hourss = document.getElementById("hourss");
+let minutess = document.getElementById("minutess");
+let secondss = document.getElementById("secondss");
+let amPms = document.getElementById("amPms");
 let alarmTimeout;
 let audio = document.getElementById("audio");
+let alarmInfo = document.getElementById("alarmInfo");
 
+let snoozeAlarm = document.getElementById("snoozeAlarm");
+let stopAlarm = document.getElementById("stopAlarm");
+
+alarmInfo.style.display = "none";
+
+activeAlarm.style.display = "none";
 function alarmSet() {
-  let ring=document.getElementById('ring')
-  if (hours == hourss.value && minutes == minutess.value && seconds == secondss.value && amPm == amPms.value) {
+  alarmInfo.innerHTML =
+    "Alarm set for " +
+    hourss.value +
+    ":" +
+    minutess.value +
+    ":" +
+    secondss.value +
+    amPms.value;
+
+  alarmInfo.style.display = "block";
+}
+
+let ring = document.getElementById("ring");
+function checkAlarm() {
+  if (
+    hours == hourss.value &&
+    minutes == minutess.value &&
+    seconds == secondss.value &&
+    amPm == amPms.value
+  ) {
+    activeAlarm.style.display = "block";
     ring.innerHTML = "alarm is ringing";
     audio.play();
     // clearTimeout(alarmTimeout);
-    alarmTimeout = setTimeout(function() {
-      audio.pause()
-      ring.innerHTML = "alarm off";
+    alarmTimeout = setTimeout(function () {
+      audio.pause();
+      ring.innerHTML = "Alarm off";
+      alarmInfo.style.display = "none";
+      activeAlarm.style.display = "none";
     }, 30000);
   }
 }
-setInterval(alarmSet, 1000);
+setInterval(checkAlarm, 1000);
+
+function stop() {
+  activeAlarm.style.display = "none";
+  audio.pause();
+  alarmInfo.style.display = "none";
+}
