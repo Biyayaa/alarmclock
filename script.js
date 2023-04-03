@@ -25,6 +25,10 @@ function updateTime() {
 setInterval(updateTime, 1000);
 
 // alarm
+
+
+
+
 let hourss = document.getElementById("hourss");
 let minutess = document.getElementById("minutess");
 let secondss = document.getElementById("secondss");
@@ -39,25 +43,46 @@ let stopAlarm = document.getElementById("stopAlarm");
 alarmInfo.style.display = "none";
 
 activeAlarm.style.display = "none";
+
+
+for(let index=1; index < 13; index++){
+  // hourss.innerHTML += "<option>" + index +"</option>"
+  if (index < 10) {
+    hourss.innerHTML += "<option>"+"0"+index+"</option>";
+  }
+  else{
+    hourss.innerHTML += "<option>" + index +"</option>"
+  }
+}
+
+for(let index=0; index < 60; index++){
+  // minutess.innerHTML += "<option>" + index +"</option>"
+  if (index < 10) {
+    minutess.innerHTML += "<option>"+"0"+index+"</option>";
+  }
+  else{
+    minutess.innerHTML += "<option>" + index +"</option>"
+  }
+}
+
+
 function alarmSet() {
   alarmInfo.innerHTML =
     "Alarm set for " +
     hourss.value +
     ":" +
     minutess.value +
-    ":" +
-    secondss.value +
     amPms.value;
 
   alarmInfo.style.display = "block";
 }
 
 let ring = document.getElementById("ring");
+
 function checkAlarm() {
   if (
     hours == hourss.value &&
     minutes == minutess.value &&
-    seconds == secondss.value &&
     amPm == amPms.value
   ) {
     activeAlarm.style.display = "block";
