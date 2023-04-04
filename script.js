@@ -37,10 +37,10 @@ let alarmTimeout;
 let audio = document.getElementById("audio");
 let alarmInfo = document.getElementById("alarmInfo");
 
-let snoozeAlarm = document.getElementById("snoozeAlarm");
+// let snoozeAlarm = document.getElementById("snoozeAlarm");
 let stopAlarm = document.getElementById("stopAlarm");
 
-alarmInfo.style.display = "none";
+alarmInfo.style.display = "";
 
 activeAlarm.style.display = "none";
 
@@ -104,3 +104,24 @@ function stop() {
   audio.pause();
   alarmInfo.style.display = "none";
 }
+
+// function snooze() {
+//   audio.pause();
+//   clearTimeout(alarmTimeout);
+//   ring.innerHTML = "Snoozed for 1 minutes";
+//   alarmTimeout = setTimeout(function () {
+//     audio.play();
+//     activeAlarm.style.display = "block";
+//     ring.innerHTML = "Alarm is ringing";
+//     clearTimeout(alarmTimeout);
+//     alarmTimeout = setTimeout(function () {
+//       audio.pause();
+//       ring.innerHTML = "Alarm off";
+//       alarmInfo.style.display = "none";
+//       activeAlarm.style.display = "none";
+//     }, 60000); // Stop playing after 1 minute
+//   }, 600000); // Ring again after 10 minutes 
+// };
+
+
+
