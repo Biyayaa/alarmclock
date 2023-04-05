@@ -78,6 +78,10 @@ function alarmSet() {
 let ring = document.getElementById("ring");
 secondss.style.display = "none"
 
+
+let startTime = 32;
+audio.currentTime = startTime;
+
 function checkAlarm() {
   if (
     hours == hourss.value &&
