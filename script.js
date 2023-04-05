@@ -94,7 +94,7 @@ function checkAlarm() {
       ring.innerHTML = "Alarm off";
       alarmInfo.style.display = "none";
       activeAlarm.style.display = "none";
-    }, 30000);
+    }, 60000);
   }
 }
 setInterval(checkAlarm, 1000);
